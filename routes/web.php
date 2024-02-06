@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/informacion/{tipo?}', function($tipo = null) {
+
+    return view('info', compact('tipo'));
+    // return view('info', ['tipo' => $tipo]);
+    // return view('info')->with('tipo', $tipo);
+});
+
+Route::get('/contacto', function() {
+    return view('contacto');
+});
+
+Route::post('/contacto', function(Request $request) {
+    dd($request->all(), $request->nombre, $request->input('nombre'));
+    $nombre = $request->nombre;
+    
+    // Validar datos
+
+    // Guardar datos
+
+    // Redireccionar
 });
