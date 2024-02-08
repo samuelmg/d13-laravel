@@ -17,9 +17,14 @@
         <label for="correo">Correo:</label>
         <input type="email" name="correo">
         <br>
-        <label for="mensaje">Mensaje:</label><br>
-        <textarea name="mensaje" id="" cols="30" rows="10"></textarea>
+        <label for="comentario">Mensaje:</label><br>
+        <textarea name="comentario" id="" cols="30" rows="10"></textarea>
         <br>
+        <select name="ciudad" id="ciudad">
+            <option value="GDL">GDL</option>
+            <option value="Tonalá">Tonalá</option>
+            <option value="Zapopan">Zapopan</option>
+        </select>
         <input type="submit" value="Enviar">
     </form>
 </body>
