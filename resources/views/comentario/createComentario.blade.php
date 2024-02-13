@@ -9,7 +9,7 @@
 <body>
     <a href="/informacion">Información</a>
     <hr>
-    <form action="/contacto" method="POST">
+    <form action="/comentario" method="POST">
         @csrf
         <label for="nombre">Nombre:</label>
         <input type="text" name="nombre">
