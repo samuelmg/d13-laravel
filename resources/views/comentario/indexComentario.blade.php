@@ -14,6 +14,8 @@
             <tr>
                 <th>Nombre</th>
                 <th>Correo</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +23,16 @@
                 <tr>
                     <td>{{ $comentario->nombre }}</td>
                     <td>{{ $comentario->correo }}</td>
+                    <td>{{ $comentario->created_at }}</td>
+                    <td>
+                        <a href="{{ route('comentario.show', $comentario) }}">Ver</a> |
+                        <a href="{{ route('comentario.edit', $comentario) }}">Editar</a> |
+                        <form action="{{ route('comentario.destroy', $comentario) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar">
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

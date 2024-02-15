@@ -13,7 +13,7 @@ class ComentarioController extends Controller
     public function index()
     {
         $comentarios = Comentario::all();
-        return view('comentario/indexComentario', compact('comentarios'));
+        return view('comentario.indexComentario', compact('comentarios'));
     }
 
     /**
@@ -21,7 +21,7 @@ class ComentarioController extends Controller
      */
     public function create()
     {
-        return view('comentario/createComentario');
+        return view('comentario.createComentario');
     }
 
     /**
@@ -29,6 +29,14 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
+        // Validar
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'correo' => 'required|email',
+            'comentario' => 'required|string|min:10',
+            'ciudad' => 'required',
+        ]);
+
         $comentario = new Comentario();
         $comentario->nombre = $request->nombre;
         $comentario->correo = $request->correo;
@@ -38,7 +46,7 @@ class ComentarioController extends Controller
 
         // Redireccionar
         // return redirect('/contacto');
-        return redirect()->back();
+        return redirect()->route('comentario.index');
     }
 
     /**
@@ -46,7 +54,7 @@ class ComentarioController extends Controller
      */
     public function show(Comentario $comentario)
     {
-        //
+        return view('comentario.showComentario', compact('comentario'));
     }
 
     /**
@@ -54,7 +62,7 @@ class ComentarioController extends Controller
      */
     public function edit(Comentario $comentario)
     {
-        //
+        return view('comentario.editComentario', compact('comentario'));
     }
 
     /**
@@ -62,7 +70,21 @@ class ComentarioController extends Controller
      */
     public function update(Request $request, Comentario $comentario)
     {
-        //
+        // Validar
+        $request->validate([
+            'nombre' => ['required', 'string', 'max:255'],
+            'correo' => 'required|email',
+            'comentario' => 'required|string|min:10',
+            'ciudad' => 'required',
+        ]);
+
+        $comentario->nombre = $request->nombre;
+        $comentario->correo = $request->correo;
+        $comentario->comentario = $request->comentario;
+        $comentario->ciudad = $request->ciudad;
+        $comentario->save();
+
+        return redirect()->route('comentario.show', $comentario);
     }
 
     /**
@@ -70,6 +92,7 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+        return redirect()->route('comentario.index');
     }
 }
