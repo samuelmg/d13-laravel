@@ -23,3 +23,14 @@ Route::get('/informacion/{tipo?}', [SitioController::class, 'info']);
 // Route::get('/contacto', [ComentarioController::class, 'create']);
 // Route::post('/contacto', [ComentarioController::class, 'store']);
 Route::resource('comentario', ComentarioController::class);
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
