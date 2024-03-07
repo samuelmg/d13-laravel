@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Comentario extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'nombre',
+        'correo',
+        'comentario',
+        'ciudad'
+    ];
+    // protected $guarded = ['id', 'created_at', 'updated_at'];
 }

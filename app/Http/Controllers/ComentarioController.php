@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+        //->only(['create', 'store', 'edit', 'update', 'destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -37,12 +43,13 @@ class ComentarioController extends Controller
             'ciudad' => 'required',
         ]);
 
-        $comentario = new Comentario();
-        $comentario->nombre = $request->nombre;
-        $comentario->correo = $request->correo;
-        $comentario->comentario = $request->comentario;
-        $comentario->ciudad = $request->ciudad;
-        $comentario->save();
+        Comentario::create($request->all());
+        // $comentario = new Comentario();
+        // $comentario->nombre = $request->nombre;
+        // $comentario->correo = $request->correo;
+        // $comentario->comentario = $request->comentario;
+        // $comentario->ciudad = $request->ciudad;
+        // $comentario->save();
 
         // Redireccionar
         // return redirect('/contacto');
@@ -78,11 +85,16 @@ class ComentarioController extends Controller
             'ciudad' => 'required',
         ]);
 
-        $comentario->nombre = $request->nombre;
-        $comentario->correo = $request->correo;
-        $comentario->comentario = $request->comentario;
-        $comentario->ciudad = $request->ciudad;
-        $comentario->save();
+        // Comentario::where('id', $comentario->id)
+        //     ->update($request->except('_token', '_method'));
+
+        $comentario->update($request->all());
+
+        // $comentario->nombre = $request->nombre;
+        // $comentario->correo = $request->correo;
+        // $comentario->comentario = $request->comentario;
+        // $comentario->ciudad = $request->ciudad;
+        // $comentario->save();
 
         return redirect()->route('comentario.show', $comentario);
     }

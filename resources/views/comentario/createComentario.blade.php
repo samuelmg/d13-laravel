@@ -1,4 +1,4 @@
-<x-mi-layout>
+<x-mi-layout nombre-pagina="Crear Comentario">
     <a href="{{ route('comentario.index') }}">Listado</a>
     <hr>
     @include('parciales.formError')

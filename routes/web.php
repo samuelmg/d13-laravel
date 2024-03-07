@@ -23,6 +23,7 @@ Route::get('/informacion/{tipo?}', [SitioController::class, 'info']);
 // Route::get('/contacto', [ComentarioController::class, 'create']);
 // Route::post('/contacto', [ComentarioController::class, 'store']);
 Route::resource('comentario', ComentarioController::class);
+    //->middleware('auth');
 
 
 Route::middleware([

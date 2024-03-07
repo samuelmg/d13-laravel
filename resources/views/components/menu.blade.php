@@ -38,6 +38,23 @@
           </div>
         </div>
       </div>
+
+      <form action="{{ route('logout') }}" method="POST" x-data>
+        @csrf
+        <a href="/logout" @click.prevent="$root.submit();">
+          SALIR
+        </a>
+      </form>
+
+    {{--
+        Forma 1 de hacer el logout
+        <a href="/logout" target="_blank"
+      onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();"
+    >
+      SALIR
+    </a> --}}
+
       <a href="https://www.creative-tim.com/learning-lab/bootstrap/license/argon-dashboard" target="_blank" class="btn btn-dark btn-sm w-100 mb-3">Documentation</a>
       <a class="btn btn-primary btn-sm mb-0 w-100" href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=sidebarfree" type="button">Upgrade to pro</a>
     </div>
