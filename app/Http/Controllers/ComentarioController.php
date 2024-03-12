@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -18,7 +19,7 @@ class ComentarioController extends Controller
      */
     public function index()
     {
-        $comentarios = Comentario::all();
+        $comentarios = Comentario::where('user_id', Auth::id())->get();
         return view('comentario.indexComentario', compact('comentarios'));
     }
 
@@ -43,7 +44,10 @@ class ComentarioController extends Controller
             'ciudad' => 'required',
         ]);
 
+        //$request->merge(['user_id' => auth()->id()]);
+        $request->merge(['user_id' => Auth::id()]);
         Comentario::create($request->all());
+
         // $comentario = new Comentario();
         // $comentario->nombre = $request->nombre;
         // $comentario->correo = $request->correo;
