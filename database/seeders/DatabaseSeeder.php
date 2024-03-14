@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Comentario;
+use App\Models\Materia;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -19,12 +20,14 @@ class DatabaseSeeder extends Seeder
             ->has(Comentario::factory()->count(3))
             ->create();
 
-        // \App\Models\User::factory()
-        //     ->withPersonalTeam()
-        //     ->create([
-        //         'name' => 'Test User',
-        //         'email' => 'test@example.com',
-        //     ]);
+        Materia::factory(20)->create();
+
+        User::factory()
+            ->withPersonalTeam()
+            ->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
 
         $this->call([
             AlumnoSeeder::class,

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\SitioController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,14 @@ Route::get('/informacion/{tipo?}', [SitioController::class, 'info']);
 // Route::post('/contacto', [ComentarioController::class, 'store']);
 Route::resource('comentario', ComentarioController::class);
     //->middleware('auth');
+
+Route::get('materia/{materia}/inscribir-alumnos', [MateriaController::class, 'inscribirAlumnos'])
+    ->name('materia.inscribir-alumnos');
+Route::post('materia/{materia}/store-alumno', [MateriaController::class, 'storeAlumnos'])
+    ->name('materia.store-alumnos');
+
+Route::resource('materia', MateriaController::class)
+    ->parameters(['materia' => 'materia']);
 
 
 Route::middleware([

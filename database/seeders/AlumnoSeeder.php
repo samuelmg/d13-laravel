@@ -14,20 +14,7 @@ class AlumnoSeeder extends Seeder
      */
     public function run(): void
     {
-        Alumno::factory(40)->create();
+        Alumno::factory(10)->create();
 
-        DB::table('alumnos')->insert([
-            'nombre' => 'Juan',
-            'correo' => 'juan@alumnos.udg.mx',
-            'codigo' => '123456789',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        Alumno::create([
-            'nombre' => 'Pedro',
-            'correo' => 'pedro@alumno.udg.mx',
-            'codigo' => '987654321',
-        ]);
     }
 }
