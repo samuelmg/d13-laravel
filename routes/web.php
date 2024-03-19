@@ -28,6 +28,10 @@ Route::resource('comentario', ComentarioController::class);
 
 Route::get('materia/{materia}/inscribir-alumnos', [MateriaController::class, 'inscribirAlumnos'])
     ->name('materia.inscribir-alumnos');
+
+Route::post('materia/{materia}/baja-alumno', [MateriaController::class, 'bajaAlumno'])
+    ->name('materia.baja-alumno');
+
 Route::post('materia/{materia}/store-alumno', [MateriaController::class, 'storeAlumnos'])
     ->name('materia.store-alumnos');
 

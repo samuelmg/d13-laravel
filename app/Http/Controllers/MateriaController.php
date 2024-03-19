@@ -72,7 +72,13 @@ class MateriaController extends Controller
 
     public function storeAlumnos(Request $request, Materia $materia)
     {
-        $materia->alumnos()->attach($request->alumno_id);
+        $materia->alumnos()->sync($request->alumno_id);
+        return redirect()->route('materia.show', $materia);
+    }
+
+    public function bajaAlumno(Request $request, Materia $materia)
+    {
+        $materia->alumnos()->detach($request->alumno_id);
         return redirect()->route('materia.show', $materia);
     }
 }

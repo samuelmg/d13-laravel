@@ -6,7 +6,7 @@
         @csrf
         <select name="alumno_id[]" multiple>
             @foreach ($alumnos as $alumno)
-                <option value="{{ $alumno->id }}">{{ $alumno->nombre }}</option>
+                <option value="{{ $alumno->id }}" @selected(false !== array_search($alumno->id, $materia->alumnos->pluck('id')->toArray()))>{{ $alumno->nombre }}</option>
             @endforeach
         </select>
         <br>
