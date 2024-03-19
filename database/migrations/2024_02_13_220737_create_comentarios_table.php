@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('comentario');
             $table->string('ciudad');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory(10)
+            ->withPersonalTeam()
             ->has(Comentario::factory()->count(3))
             ->create();
 
